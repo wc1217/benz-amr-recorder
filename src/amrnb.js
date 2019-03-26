@@ -24414,6 +24414,9 @@ self.onmessage = function (e) {
         case 'decode':
             decode(e.data.buffer);
             break;
+		case 'toWav':
+			toWav(e.data.buffer);
+            break;
     }
 };
 
@@ -24430,5 +24433,12 @@ function decode(u8Array) {
         command: 'decode',
         amr: AMR.decode(u8Array)
     });
+}
+
+function toWav(u8Array) {
+	self.postMessage({
+		command: 'toWav',
+		amr: AMR.toWAV(u8Array)
+	});
 }
 };

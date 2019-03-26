@@ -393,6 +393,15 @@ export default class BenzAMRRecorder {
         })
     }
 
+    toWAV(u8Array) {
+      return new Promise(resolve => {
+        this._runAMRWorker({
+          command: 'toWav',
+          buffer: u8Array
+        }, resolve);
+      });
+    }
+
     static rawAMRData2Blob(data) {
         return new Blob([data.buffer], {type: 'audio/amr'});
     }

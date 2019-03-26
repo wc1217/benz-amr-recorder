@@ -58,9 +58,7 @@ export default [
                 compress: {},
                 mangle: {
                     safari10: true,
-                    properties: {
-                        regex: /^_[^_]/
-                    }
+                    properties: false
                 },
                 ie8: false,
                 safari10: true,

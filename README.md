@@ -1,3 +1,11 @@
+##### 修改版benz-amr-recorder
+
+来自 [benz-amr-recorder](https://benzleung.github.io/benz-amr-recorder)
+
+增加toWAV方法
+
+修正min压缩时的变量问题
+
 # AMR 录音机
 
 ([README in English](./README-EN.md))
@@ -47,6 +55,18 @@ amr.initWithUrl('path/to/voice.amr').then(function() {
 amr.onEnded(function() {
   alert('播放完毕');
 })
+```
+
+转换为wav播放
+
+```javascript
+amr.initWithBlob(file).then(function(){
+	//var amrBlob = amr.getBlob(), amrUrl = window.URL.createObjectURL(amrBlob);
+	amr.toWAV(amr._rawData).then(function(data){
+		var src = window.URL.createObjectURL(new Blob([data], {type: 'audio/wav'}));
+		openModel('<div class="scrm-audio" style="padding:25px 10px 10px;"><audio src="' + src + '" controls="controls" autoplay="autoplay"></audio></div>');
+	});
+});
 ```
 
 播放本地文件：
